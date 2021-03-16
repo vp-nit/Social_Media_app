@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}pending invitations{% endblock title %}
+
+{% block content %}
+
+{% if is_empty %}
+There are no pending invitations from you.
+{% endif %}
+{% for obj in invited %}
+
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="row">
+                <div class="three wide column">
+                    <img class="ui small circular image" src="{{obj.avatar.url}}" alt="">
+                </div>
+                <div class="thirteen wide column">
+                    <h3>{{obj.user}}</h3>
+                    <p>{{obj.bio}}</p>
+                    <a href={{obj.get_absolute_url}}>
+                        <button class="ui button primary mb-5 w-big">See profile</button>
+                    </a>
+                    <br>
+                    <button class="ui disabled button mb-5 w-big">
+                        <i class="user icon"></i>
+                        Waiting for approval
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}
